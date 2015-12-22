@@ -53,7 +53,25 @@ public class BusJob extends Job {
 		String event;
 		try {
 			if ((event = this.dataset.readLine()) != null) {
-				this.distributeEvent(event);
+				String[] tmp = event.split(",");
+				StringBuffer msg = new StringBuffer();
+				msg.append("{");
+				msg.append("\"timestamp\":\"" + tmp[0] + "\",");
+				msg.append("\"lineID\":\"" + tmp[1] + "\",");
+				msg.append("\"direction\":\"" + tmp[2] + "\",");
+				msg.append("\"journeyID\":\"" + tmp[3] + "\",");
+				msg.append("\"timeframe\":\"" + tmp[4] + "\",");
+				msg.append("\"vehiclejourneyID\":\"" + tmp[5] + "\",");
+				msg.append("\"operator\":\"" + tmp[6] + "\",");
+				msg.append("\"congestion\":\"" + tmp[7] + "\",");
+				msg.append("\"delay\":\"" + tmp[8] + "\",");
+				msg.append("\"blockID\":\"" + tmp[9] + "\",");
+				msg.append("\"vehicleID\":\"" + tmp[10] + "\",");
+				msg.append("\"stopID\":\"" + tmp[11] + "\",");
+				msg.append("\"atStop\":\"" + tmp[12] + "\"");
+				msg.append("}");
+				
+				this.distributeEvent(msg.toString());
 			}
 			else {
 				//reset stream
