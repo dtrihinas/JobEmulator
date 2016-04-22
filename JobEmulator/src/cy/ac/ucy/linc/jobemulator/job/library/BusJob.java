@@ -15,9 +15,12 @@ import cy.ac.ucy.linc.jobemulator.job.Job;
 
 public class BusJob extends Job {
 
+	//TODO use a config file
 	private static final String DEFAULT_SERVER_PORT = "9092";
 	private static final String DEFAULT_SERVER_IP = "10.16.3.177";
+//	private static final String DEFAULT_SERVER_IP = "192.168.0.201";
 	private static final String DEFAULT_DATASET_PATH = "/home/dtrihinas/buses";
+//	private static final String DEFAULT_DATASET_PATH = "/home/ubuntu/buses";
 	private static final String DEFAULT_KAFKA_TOPIC = "buses";
 	
 	private String busID;
@@ -55,6 +58,9 @@ public class BusJob extends Job {
 			if ((event = this.dataset.readLine()) != null) {
 				String[] tmp = event.split(",");
 				StringBuffer msg = new StringBuffer();
+				if (tmp.length < 12) {
+					return;
+				}
 				msg.append("{");
 				msg.append("\"timestamp\":\"" + tmp[0] + "\",");
 				msg.append("\"lineID\":\"" + tmp[1] + "\",");

@@ -24,6 +24,11 @@
 	     </exclusion>
 	 </exclusions>
 	</dependency>
+  	<dependency>
+  		<groupId>AdaM</groupId>
+  		<artifactId>AdaM</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
   <build>
     <sourceDirectory>src</sourceDirectory>
